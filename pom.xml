@@ -8,14 +8,18 @@
         <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.demo.devops</groupId>
-    <artifactId>parkrides</artifactId>
+    <artifactId>ThemeParkRide</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>parkrides</name>
-    <description>parkrides</description>
+    <description>Demo application for BITS-WILP DevOps Assignment</description>
+    <inceptionYear>2021</inceptionYear>
+
     <properties>
         <java.version>11</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
