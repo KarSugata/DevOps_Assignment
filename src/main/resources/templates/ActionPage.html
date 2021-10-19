@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <script src=
+        "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+          </script>
+          
+        <script>
+    function getDetails() {
+        var ride_data="";
+
+        $.ajax({
+            headers: { 
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin":"http://localhost:8082"
+        },
+            url:'http://localhost:8082/ride',
+            type:'GET',
+            data:ride_data,
+            crossDomain: true,
+            success:function(response){
+                console.log(response);
+              
+              for(i=0;i<response.length;i++){
+                console.log(response[i].id);
+              }
+
+         var tbltop ='<table class="table"><thead><tr><th scope="col"  data-field ="id">ID</th><th scope="col"  data-field ="name">Name</th><th scope="col"  data-field ="description">Description</th><th scope="col"  data-field ="thrillFactor">Thrill Factor</th><th scope="col"  data-field ="capacity">Capacity</th></tr><thead>';
+
+            var ride_data='';
+            for (j = 0; j < response.length; j++){
+                ride_data += '<tr>';
+                ride_data += '<td>'+ response[j].id +'</td>';
+                ride_data += '<td>'+ response[j].name +'</td>';
+                ride_data += '<td>'+ response[j].description +'</td>';
+                ride_data += '<td>'+ response[j].thrillFactor +'</td>';
+                ride_data += '<td>'+ response[j].capacity +'</td>';
+                ride_data += '</tr>';
+          }
+
+          var tblbottom = "</table>";
+          var tbl = tbltop + ride_data + tblbottom;
+            $("#rideContainer").html(tbl);
+        } 
+        
+        });
+    }
+ 
+    function addNewRide(){
+      $("#addNewRide").click(function(){
+        window.location.replace("../templates/index.html");
+      });
+      
+    }
+
+  
+  </script>
+    </head>
+
+    <body>
+        <div class="container" style="background-image: url('background1.png'); background-size: 100% 100%;">
+            <h2 align="center" >New Entry ceated successfully</h2>
+               
+            <div class="form-group" >
+                <input type="button"  onclick="getDetails()" value="Get all the values" class="btn btn-success btn-lg">
+                <input type="button" id="addNewRide" onclick="addNewRide()" value="Add a new Ride" class="btn btn-success btn-lg">
+              </div >
+            <div id="rideContainer"  >
+
+            </div>
+                    
+        </div>
+    </body>
+</html>
