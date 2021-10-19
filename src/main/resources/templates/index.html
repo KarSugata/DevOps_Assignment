@@ -1,103 +1,107 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <!-- Latest compiled and minified CSS -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-      <!-- jQuery library -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <!-- Latest compiled JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   </head>
-   <script>
-     /* $(document).ready(function () {
-          $('#rideForm').submit(
-              function (event) {
-                  var fname = $('#fname').val();
-                  var description = $('#description').val();
-                  var thrill = $('#thrill').val();
-                  var capacity = $('#capacity').val();
-                  const obj = { name: fname, description: description, thrillFactor: thrill, capacity: capacity };
-                  const myJSON = JSON.stringify(obj);
-                  $.ajax({
-                      headers: {
-                          "Accept": "application/json",
-                          "Access-Control-Allow-Origin": "http://localhost:8082"
-                      },
-                      url: 'http://localhost:8082/ride',
-                      type: "POST",
-                      contentType: "application/json",
-                      data: myJSON,
-                      crossDomain: true,
-                      success: function (response) {
-                          alert("Data Successfully Posted");
-                          window.location.replace("../templates/ActionPage.html");
-                      },
-                      error: function (xhr, status, error) {
-                          alert(error);
-                      }
-                  }
-                  );
-              }
-          );
+
+<head>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<script>
+   /* $(document).ready(function () {
+        $('#rideForm').submit(
+            function (event) {
+                var fname = $('#fname').val();
+                var description = $('#description').val();
+                var thrill = $('#thrill').val();
+                var capacity = $('#capacity').val();
+                const obj = { name: fname, description: description, thrillFactor: thrill, capacity: capacity };
+                const myJSON = JSON.stringify(obj);
+                $.ajax({
+                    headers: {
+                        "Accept": "application/json",
+                        "Access-Control-Allow-Origin": "http://localhost:8082"
+                    },
+                    url: 'http://localhost:8082/ride',
+                    type: "POST",
+                    contentType: "application/json",
+                    data: myJSON,
+                    crossDomain: true,
+                    success: function (response) {
+                        alert("Data Successfully Posted");
+                        window.location.replace("../templates/ActionPage.html");
+                    },
+                    error: function (xhr, status, error) {
+                        alert(error);
+                    }
+                }
+                );
+            }
+        );
 
 */
-          $('#Submit').click(
-              function (event) {
-                  var fname = $('#fname').val();
-                  var description = $('#description').val();
-                  var thrill = $('#thrill').val();
-                  var capacity = $('#capacity').val();
-                  const obj = { name: fname, description: description, thrillFactor: thrill, capacity: capacity };
-                  const myJSON = JSON.stringify(obj);
-                  $.ajax({
-                      headers: {
-                          "Accept": "application/json",
-                          "Access-Control-Allow-Origin": "http://localhost:8082"
-                      },
-                      url: 'http://localhost:8082/ride',
-                      type: "POST",
-                      contentType: "application/json",
-                      data: myJSON,
-                      crossDomain: true,
-                      success: function (response) {
-                          alert("Data Successfully Posted");
-                          window.location.replace("../templates/ActionPage.html");
-                      },
-                      error: function (xhr, status, error) {
-                          alert(error);
-                      }
-                  }
-                  );
-              }
-          );
-      });
-   </script>
-   <body>
-      <div class="container" style="background-image: url('background1.png'); background-size: 100% 100%;">
-         <h2 align="center">New ride entry</h2>
-         <form id="rideForm">
-            <div class="form-group">
-               <label for="fname">Name of the ride:</label><br>
-               <input type="text" id="fname" name="fname" value="Ride name" class="form-control"><br>
-            </div>
-            <div class="form-group">
-               <label for="description">Description of ride:</label><br>
-               <textarea type="text" id="description" name="description" value="This is a ride"
-                  class="form-control">This is a ride</textarea><br>
-            </div>
-            <div class="form-group">
-               <label for="thrill">Thrill factor of the ride:</label><br>
-               <input type="text" id="thrill" name="thrill" value="5" class="form-control"><br>
-            </div>
-            <div class="form-group">
-               <label for="capacity">Capacity of the ride:</label><br>
-               <input type="text" id="capacity" name="capacity" value="10" class="form-control"><br><br>
-            </div>
-            <div class="form-group">
-               <!---input type="submit" value="Submit" class="btn btn-success btn-lg"--->
-               <input type="button" id="Submit" value="Submit" class="btn btn-success btn-lg">
-            </div>
-         </form>
-      </div>
-   </body>
+   $(document).ready(function () {
+      $('#Submit').click(
+         function (event) {
+            var fname = $('#fname').val();
+            var description = $('#description').val();
+            var thrill = $('#thrill').val();
+            var capacity = $('#capacity').val();
+            const obj = { name: fname, description: description, thrillFactor: thrill, capacity: capacity };
+            const myJSON = JSON.stringify(obj);
+            $.ajax({
+               headers: {
+                  "Accept": "application/json",
+                  "Access-Control-Allow-Origin": "http://localhost:8082"
+               },
+               url: 'http://localhost:8082/ride',
+               type: "POST",
+               contentType: "application/json",
+               data: myJSON,
+               crossDomain: true,
+               success: function (response) {
+                  alert("Data Successfully Posted");
+                  window.location.replace("../templates/ActionPage.html");
+               },
+               error: function (xhr, status, error) {
+                  alert(error);
+               }
+            }
+            );
+         }
+      );
+   });
+</script>
+
+<body>
+   <div class="container" style="background-image: url('background1.png'); background-size: 100% 100%;">
+      <h2 align="center">New ride entry</h2>
+      <form id="rideForm">
+         <div class="form-group">
+            <label for="fname">Name of the ride:</label><br>
+            <input type="text" id="fname" name="fname" value="Ride name" class="form-control"><br>
+         </div>
+         <div class="form-group">
+            <label for="description">Description of ride:</label><br>
+            <textarea type="text" id="description" name="description" value="This is a ride"
+               class="form-control">This is a ride</textarea><br>
+         </div>
+         <div class="form-group">
+            <label for="thrill">Thrill factor of the ride:</label><br>
+            <input type="text" id="thrill" name="thrill" value="5" class="form-control"><br>
+         </div>
+         <div class="form-group">
+            <label for="capacity">Capacity of the ride:</label><br>
+            <input type="text" id="capacity" name="capacity" value="10" class="form-control"><br><br>
+         </div>
+         <div class="form-group">
+            <!---input type="submit" value="Submit" class="btn btn-success btn-lg"--->
+            <input type="button" id="Submit" value="Submit" class="btn btn-success btn-lg">
+         </div>
+      </form>
+   </div>
+</body>
+
 </html>
