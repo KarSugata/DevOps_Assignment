@@ -1,83 +1,72 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<head>
+    <title>Welcome to Theme Park Ride </title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script>
+        function getDetails() {
+            let ride_data = "";
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            $.ajax({
+                headers: {
+                    "Accept": "application/json",
+                    "Access-Control-Allow-Origin": "http://localhost:8082"
+                },
+                url: 'http://localhost:8082/ride',
+                type: 'GET',
+                data: ride_data,
+                crossDomain: true,
+                success: function (response) {
+                    console.log(response);
 
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                    for (let i = 0; i < response.length; i++) {
+                        console.log(response[i].id);
+                    }
 
-        <script src=
-        "https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
-          </script>
-          
-        <script>
-    function getDetails() {
-        var ride_data="";
+                    const tabletop = '<table class="table"><thead><tr><th scope="col"  data-field ="id">ID</th><th scope="col"  data-field ="name">Name</th><th scope="col"  data-field ="description">Description</th><th scope="col"  data-field ="thrillFactor">Thrill Factor</th><th scope="col"  data-field ="capacity">Capacity</th></tr><thead>';
 
-        $.ajax({
-            headers: { 
-            "Accept": "application/json",
-            "Access-Control-Allow-Origin":"http://localhost:8082"
-        },
-            url:'http://localhost:8082/ride',
-            type:'GET',
-            data:ride_data,
-            crossDomain: true,
-            success:function(response){
-                console.log(response);
-              
-              for(i=0;i<response.length;i++){
-                console.log(response[i].id);
-              }
+                    let ride_data = '';
+                    for (let j = 0; j < response.length; j++) {
+                        ride_data += '<tr>';
+                        ride_data += '<td>' + response[j].id + '</td>';
+                        ride_data += '<td>' + response[j].name + '</td>';
+                        ride_data += '<td>' + response[j].description + '</td>';
+                        ride_data += '<td>' + response[j].thrillFactor + '</td>';
+                        ride_data += '<td>' + response[j].capacity + '</td>';
+                        ride_data += '</tr>';
+                    }
 
-         var tbltop ='<table class="table"><thead><tr><th scope="col"  data-field ="id">ID</th><th scope="col"  data-field ="name">Name</th><th scope="col"  data-field ="description">Description</th><th scope="col"  data-field ="thrillFactor">Thrill Factor</th><th scope="col"  data-field ="capacity">Capacity</th></tr><thead>';
+                    const bottom = "</table>";
+                    const tbl = tabletop + ride_data + bottom;
+                    $("#rideContainer").html(tbl);
+                }
 
-            var ride_data='';
-            for (j = 0; j < response.length; j++){
-                ride_data += '<tr>';
-                ride_data += '<td>'+ response[j].id +'</td>';
-                ride_data += '<td>'+ response[j].name +'</td>';
-                ride_data += '<td>'+ response[j].description +'</td>';
-                ride_data += '<td>'+ response[j].thrillFactor +'</td>';
-                ride_data += '<td>'+ response[j].capacity +'</td>';
-                ride_data += '</tr>';
-          }
+            });
+        }
 
-          var tblbottom = "</table>";
-          var tbl = tbltop + ride_data + tblbottom;
-            $("#rideContainer").html(tbl);
-        } 
-        
-        });
-    }
- 
-    function addNewRide(){
-      $("#addNewRide").click(function(){
-        window.location.replace("../templates/index.html");
-      });
-      
-    }
+        function addNewRide() {
+            $("#addNewRide").click(function () {
+                window.location.replace("../templates/index.html");
+            });
 
-  
-  </script>
-    </head>
+        }
 
-    <body>
-        <div class="container" style="background-image: url('background1.png'); background-size: 100% 100%;">
-            <h2 align="center" >New Entry ceated successfully</h2>
-               
-            <div class="form-group" >
-                <input type="button"  onclick="getDetails()" value="Get all the values" class="btn btn-success btn-lg">
-                <input type="button" id="addNewRide" onclick="addNewRide()" value="Add a new Ride" class="btn btn-success btn-lg">
-              </div >
-            <div id="rideContainer"  >
-
-            </div>
-                    
-        </div>
-    </body>
+    </script>
+</head>
+<body>
+<div class="container" style="background-image: url('background.png'); background-size: 100% 100%;">
+    <h2 align="center">New Entry Created successfully</h2>
+    <div class="form-group">
+        <input class="btn btn-success btn-lg" onclick="getDetails()" type="button" value="Get all the values" >
+        <input class="btn btn-success btn-lg" id="addNewRide" onclick="addNewRide()" type="button" value="Add a new Ride">
+    </div>
+    <div id="rideContainer"></div>
+</div>
+</body>
 </html>
